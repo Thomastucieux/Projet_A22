@@ -23,7 +23,8 @@ public abstract class Gladiateur {
         this.Appartenance = Appartenance;
     }
 
-    public Integer recevoirCoup(Integer degat) {
+    public Integer recevoirCoup(Integer degat, Gladiateur agresseur) {
+        //agresseur utilisé seulement dans la méthode de Mirmillon
         Integer res=1;
         if (this.vie > 0) {
             //Calcul des dégats infligés en fonction de la défense
@@ -89,7 +90,7 @@ public abstract class Gladiateur {
     public Integer frapper(Arme a, Gladiateur Victime) {
         Integer res=1;
         if (this.listeArme.contains(a)) {
-            res = Victime.recevoirCoup(a.getPuissanceOffensive()+this.getForce());
+            res = Victime.recevoirCoup(a.getPuissanceOffensive()+this.getForce(), this);
         }
         return res;
     }

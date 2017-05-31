@@ -87,7 +87,8 @@ public class Facade {
     }
 
     public static Integer lancerJeu() {
-        
+        Facade.parametrage(200, 30, 100, 50);
+        return 0;
     }
 
     public static String decrireArme(Integer ida) {

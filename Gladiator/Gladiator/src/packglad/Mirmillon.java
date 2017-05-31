@@ -55,9 +55,12 @@ public class Mirmillon extends Gladiateur {
     }
 
 
-    public void recevoirCoup(Gladiateur Agresseur, Arme a) {
-        this.agresseur.add(Agresseur);
-        super.recevoirCoup(a.getPuissanceOffensive()+Agresseur.getForce());
+    public Integer recevoirCoup(Integer degat, Gladiateur Agresseur) {
+        Integer res = super.recevoirCoup(degat, Agresseur);
+        if (res == 0) {
+            this.agresseur.add(Agresseur);
+        }
+        return res;
     }
 
 

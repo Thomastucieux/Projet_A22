@@ -90,5 +90,9 @@ public class Retiaire extends Gladiateur {
         }
         return res;
     }
+    
+    public Integer recevoirCoup(Integer degat, Gladiateur agresseur) {
+        return super.recevoirCoup(degat-this.getAgilite(), agresseur);
+    }
 
 }
