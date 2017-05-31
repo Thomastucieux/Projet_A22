@@ -40,7 +40,7 @@ public abstract class Gladiateur {
                 }
                 res = 0;
             }
-        } 
+        }
         return res;
     }
 
