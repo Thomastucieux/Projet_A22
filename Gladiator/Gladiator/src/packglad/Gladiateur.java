@@ -32,12 +32,15 @@ public abstract class Gladiateur {
             }
             //Application des dégats s'ils sont supérieur à la défense
             if (degat > 0) {
-                //TODO test dégat > a la vie
-                this.vie -= degat;
+                if (degat>this.vie) {
+                	this.vie=0;
+                }
+                else {
+                	this.vie -= degat;
+                }
                 res = 0;
             }
-        }
-        
+        } 
         return res;
     }
 
