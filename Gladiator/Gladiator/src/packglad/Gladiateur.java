@@ -62,8 +62,11 @@ public abstract class Gladiateur {
     }
     
     public String rapport() {
-        return "Mon identifiant est " +this.getIdg() + "mon nom est" + this.getNom() + "j'appartiens a l'ethnie des " + this.getAppartenance() + "je suis " + this.getEtat() +"il me reste " + this.getVie() + "points de vie " + "j'ai une force de " + this.getForce() + "voici mes armes " + this.declarerArmes();
-
+        String mesArmes = "";
+        for (Arme a : this.listeArme) {
+            mesArmes += a.decrireArme()+" ";
+        }
+        return "Mon identifiant est " +this.getIdg() + ", mon nom est" + this.getNom() + ", j'appartiens a l'ethnie des " + this.getAppartenance().getNom() + ", je suis " + this.getEtat() +", il me reste " + this.getVie() + "points de vie, j'ai une force de " + this.getForce() + ", voici mes armes " + mesArmes;
     }
 
     public String getEtat() {

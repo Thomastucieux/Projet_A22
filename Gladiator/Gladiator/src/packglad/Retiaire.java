@@ -35,8 +35,13 @@ public class Retiaire extends Gladiateur {
         return Retiaire.c_force;
     }
 
-    public static void c_autoriserArme(Arme a) {
-        Retiaire.armeAcc.add(a.getIda());
+    public static Integer c_autoriserArme(Arme a) {
+        Integer res=1;
+        if (!Retiaire.armeAcc.contains(a.getIda())) {
+            Retiaire.armeAcc.add(a.getIda());
+            res=0;
+        }
+        return res;
     }
 
     public static void setC_force(Integer c_force) {

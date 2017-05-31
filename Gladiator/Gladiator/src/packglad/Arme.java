@@ -24,7 +24,7 @@ public class Arme {
      */
 
     public String decrireArme() {
-        return "Cette arme a le numero "+this.getIda()+"c'est un(e) "+this.getType()+", elle a une puissance offensive de "+this.getPuissanceOffensive()+" et une puissance défensive de "+this.getPuissanceDefensive();
+        return this.getType()+" N°"+this.getIda()+", puissance offensive de "+this.getPuissanceOffensive()+" et puissance défensive de "+this.getPuissanceDefensive();
     }
 
 

@@ -61,8 +61,13 @@ public class Mirmillon extends Gladiateur {
     }
 
 
-    public static void c_autoriserArme(Arme a) {
-        Mirmillon.armeAutorisees.add(a.getIda());
+    public static Integer c_autoriserArme(Arme a) {
+        Integer res=1;
+        if (!Mirmillon.armeAutorisees.contains(a.getIda())) {
+            Mirmillon.armeAutorisees.add(a.getIda());
+            res=0;
+        }
+        return res;
     }
     
     public String saluer() {
