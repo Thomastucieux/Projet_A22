@@ -1,5 +1,6 @@
 package packglad;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public abstract class Gladiateur {
@@ -13,7 +14,7 @@ public abstract class Gladiateur {
     private Ethnie Appartenance;
 
     //Liste d'arme possedé par le gladiateur
-    private Collection<Arme> listeArme;
+    private Collection<Arme> listeArme = new ArrayList<Arme>();
 
 
     public Gladiateur(String nom, Integer idg, Ethnie Appartenance) {
@@ -63,11 +64,7 @@ public abstract class Gladiateur {
     }
     
     public String rapport() {
-        String mesArmes = "";
-        for (Arme a : this.listeArme) {
-            mesArmes += a.decrireArme()+" ";
-        }
-        return "Mon identifiant est " +this.getIdg() + ", mon nom est" + this.getNom() + ", j'appartiens a l'ethnie des " + this.getAppartenance().getNom() + ", je suis " + this.getEtat() +", il me reste " + this.getVie() + "points de vie, j'ai une force de " + this.getForce() + ", voici mes armes " + mesArmes;
+        return "Mon identifiant est " +this.getIdg() + ", mon nom est " + this.getNom() + ", j'appartiens a l'ethnie des " + this.getAppartenance().getNom() + ", je suis " + this.getEtat() +", il me reste " + this.getVie() + " points de vie, j'ai une force de " + this.getForce() + ", voici mes armes " + this.listeArme.toString();
     }
 
     public String getEtat() {
@@ -98,9 +95,9 @@ public abstract class Gladiateur {
 
     public Integer perdreArme(Arme a) {
         Integer res=0;
-        for (Arme arme : listeArme) {
+        for (Arme arme : this.listeArme) {
             if (arme == a) {
-                this.listeArme.remove(arme);
+                this.listeArme.remove(a);
                 res=1;
             }
         }

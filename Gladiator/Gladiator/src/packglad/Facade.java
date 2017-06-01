@@ -1,5 +1,6 @@
 package packglad;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Facade {
@@ -11,7 +12,7 @@ public class Facade {
     }
 
     public static Collection<Integer> listerTousGladiateurs() {
-        Collection<Integer> glad = null;
+        Collection<Integer> glad = new ArrayList<Integer>();
         for (Gladiateur g :GGladiateur.getListeGladiateur()) {
             glad.add(g.getIdg());
         }
@@ -49,7 +50,7 @@ public class Facade {
     }
 
     public static Collection<Integer> listerEthnies() {
-        Collection<Integer> ethnie=null;
+        Collection<Integer> ethnie = new ArrayList<Integer>();
         for (Ethnie e : GEthnie.getListeEthnie()) {
             ethnie.add(e.getIde());
         }
@@ -79,7 +80,7 @@ public class Facade {
     }
 
     public static Collection<Integer> declarerArmes(Integer idg) {
-        Collection<Integer> arme=null;
+        Collection<Integer> arme = new ArrayList<Integer>();
         for (Arme a : GGladiateur.getGladiateur(idg).declarerArmes()) {
             arme.add(a.getIda());
         }
@@ -202,7 +203,7 @@ public class Facade {
     }
 
     public static Collection<Integer> listerGladiateursDEthnie(Integer ide) {
-        Collection<Integer> glad=null;
+        Collection<Integer> glad = new ArrayList<Integer>();
         for (Gladiateur g : GGladiateur.getCompoEthnie(GEthnie.getEthnie(ide))) {
             glad.add(g.getIdg());
         }

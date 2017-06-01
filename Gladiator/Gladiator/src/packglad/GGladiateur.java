@@ -1,5 +1,6 @@
 package packglad;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class GGladiateur {
@@ -7,7 +8,7 @@ public class GGladiateur {
      * @attribute
      */
     private static Integer incrementIDG=1;
-    private static Collection<Gladiateur> listeGladiateur;
+    private static Collection<Gladiateur> listeGladiateur = new ArrayList<Gladiateur>();
 
     public static void setIncrementIDG(Integer incrementIDG) {
         GGladiateur.incrementIDG = incrementIDG;

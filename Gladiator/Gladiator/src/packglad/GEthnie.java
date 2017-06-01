@@ -1,5 +1,6 @@
 package packglad;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class GEthnie {
@@ -7,11 +8,11 @@ public class GEthnie {
      * @attribute
      */
     private static Integer incrementIde=1;
-    private static Collection<Ethnie> listeEthnie;
+    private static Collection<Ethnie> listeEthnie = new ArrayList<Ethnie>() ;
 
     public static Ethnie getEthnie(Integer ide) {
         Ethnie e = null;
-        for (Ethnie ethnie : listeEthnie)
+        for (Ethnie ethnie : GEthnie.listeEthnie)
         {
             if (ide == ethnie.getIde())
             {
@@ -23,7 +24,7 @@ public class GEthnie {
 
     public static void ajouterEthnie(String nom) {
         Ethnie e = new Ethnie(nom,incrementIde);
-        listeEthnie.add(e);
+        GEthnie.getListeEthnie().add(e);
         GEthnie.setIncrementIde(GEthnie.getIncrementIde()+1);
     }
 
@@ -36,13 +37,13 @@ public class GEthnie {
     }
 
     public static Collection<Ethnie> getListeEthnie() {
-        return listeEthnie;
+        return GEthnie.listeEthnie;
     }
 
     public static Collection<Integer> getEthnieWin() {
         Collection<Integer> ethnie = null;
         int score=0;
-        for (Ethnie e : listeEthnie)
+        for (Ethnie e : GEthnie.listeEthnie)
         {
             if (e.getScore() > score)
             {

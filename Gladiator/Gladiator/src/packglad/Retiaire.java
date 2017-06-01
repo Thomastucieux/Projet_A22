@@ -1,5 +1,6 @@
 package packglad;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Retiaire extends Gladiateur {
@@ -12,7 +13,8 @@ public class Retiaire extends Gladiateur {
     private static Integer c_agiliteMax;
 
     //Collection des armes disponibles pour les rétiaires
-    private static Collection<Integer> armeAcc;
+    private static Collection<Integer> armeAcc = new ArrayList<Integer>();
+
 
     /**
      * @Constructeurs
@@ -23,11 +25,11 @@ public class Retiaire extends Gladiateur {
     }
 
     public String rapport() {
-        return super.rapport() + "mon agilite est de " + this.getAgilite();
+        return super.rapport() + " mon agilite est de " + this.getAgilite();
     }
     
     public String saluer() {
-        return "Ave Caesar, " + this.getType() + " n°" + this.getIdg() + " : " + this.getNom() + " , j'appartiens à l'ethnie des " + this.getAppartenance();
+        return "Ave Caesar, " + this.getType() + " n°" + this.getIdg() + " : " + this.getNom() + " , j'appartiens à l'ethnie des " + this.getAppartenance().getNom();
     }
 
 

@@ -1,5 +1,6 @@
 package packglad;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class GArme {
@@ -7,7 +8,7 @@ public class GArme {
      * @attribute
      */
     private static Integer incrementIda=1;
-    private static Collection<Arme> listeArme;
+    private static Collection<Arme> listeArme = new ArrayList<Arme>();
     
     /**
      * @Méthodes
@@ -17,7 +18,7 @@ public class GArme {
         Arme a = new Arme(GArme.getIncrementIda(),type,puissanceOff,puissanceDef);
         GArme.listeArme.add(a);
         GArme.setIncrementIda(GArme.getIncrementIda()+1);
-        return 1;
+        return a.getIda();
     }
 
     public static Arme getArme(Integer ida) {
