@@ -2,59 +2,48 @@ package packglad;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
-public class GEthnie {
+class GEthnie {
     /**
      * @attribute
      */
-    private static Integer incrementIde=1;
-    private static Collection<Ethnie> listeEthnie = new ArrayList<Ethnie>() ;
+    private static Integer incrementIde = 1;
+    private static Collection<Ethnie> listeEthnie = new ArrayList<Ethnie>();
 
-    public static Ethnie getEthnie(Integer ide) {
+    static Ethnie getEthnie(Integer ide) {
         Ethnie e = null;
-        for (Ethnie ethnie : GEthnie.listeEthnie)
-        {
-            if (ide == ethnie.getIde())
-            {
-                e=ethnie;
-            }
-        }
+
+        for (Ethnie ethnie : listeEthnie)
+            if (ide.equals(ethnie.getIde()))
+                e = ethnie;
+
         return e;
     }
 
-    public static void ajouterEthnie(String nom) {
-        Ethnie e = new Ethnie(nom,incrementIde);
-        GEthnie.getListeEthnie().add(e);
-        GEthnie.setIncrementIde(GEthnie.getIncrementIde()+1);
+    static void ajouterEthnie(String nom) {
+        Ethnie e = new Ethnie(nom, incrementIde);
+        listeEthnie.add(e);
+        incrementIde++;
     }
 
-    public static void setIncrementIde(Integer incrementIde) {
-        GEthnie.incrementIde = incrementIde;
+    static Collection<Ethnie> getListeEthnie() {
+        return new ArrayList<>(GEthnie.listeEthnie);
     }
 
-    public static Integer getIncrementIde() {
-        return incrementIde;
-    }
+    static Collection<Integer> getEthnieWin() {
+        Collection<Integer> ethnie = new ArrayList<>();
+        int score = 0;
 
-    public static Collection<Ethnie> getListeEthnie() {
-        return GEthnie.listeEthnie;
-    }
-
-    public static Collection<Integer> getEthnieWin() {
-        Collection<Integer> ethnie = new ArrayList<Integer>();
-        int score=0;
-        for (Ethnie e : GEthnie.listeEthnie)
-        {
-            if (e.getScore() > score)
-            {
-                ethnie.removeAll(ethnie);
+        for (Ethnie e : GEthnie.listeEthnie) {
+            if (e.getScore() > score) {
+                ethnie.clear();
                 ethnie.add(e.getIde());
-                score=e.getScore();
-            }
-            else if (e.getScore()== score) {
+                score = e.getScore();
+            } else if (e.getScore() == score)
                 ethnie.add(e.getIde());
-            }
         }
+
         return ethnie;
     }
 }

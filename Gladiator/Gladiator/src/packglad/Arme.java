@@ -10,7 +10,7 @@ public class Arme {
     private Integer puissanceDefensive;
 
     /**
-     * @Constructeurs
+     * Constructeurs
      */
     public Arme(Integer ida, String type, Integer puissanceOffensive, Integer puissanceDefensive) {
         this.ida = ida;
@@ -20,11 +20,10 @@ public class Arme {
     }
 
     /**
-     * @Méthodes
+     * Méthodes
      */
-
-    public String decrireArme() {
-        return this.getType()+" N°"+this.getIda()+", puissance offensive de "+this.getPuissanceOffensive()+" et puissance défensive de "+this.getPuissanceDefensive();
+    String decrireArme() {
+        return this.getType() + " N°" + this.getIda() + ", puissance offensive de " + this.getPuissanceOffensive() + " et puissance défensive de " + this.getPuissanceDefensive();
     }
 
 
@@ -32,31 +31,32 @@ public class Arme {
         return this.ida;
     }
 
+    public String getType() {
+        return this.type;
+    }
+
     public void setType(String type) {
         this.type = type;
     }
 
-    public String getType() {
-        return this.type;
+    Integer getPuissanceOffensive() {
+        return this.puissanceOffensive;
     }
 
     public void setPuissanceOffensive(Integer puissanceOffensive) {
         this.puissanceOffensive = puissanceOffensive;
     }
 
-    public Integer getPuissanceOffensive() {
-        return this.puissanceOffensive;
+    Integer getPuissanceDefensive() {
+        return this.puissanceDefensive;
     }
 
     public void setPuissanceDefensive(Integer puissanceDefensive) {
         this.puissanceDefensive = puissanceDefensive;
     }
 
-    public Integer getPuissanceDefensive() {
-        return this.puissanceDefensive;
-    }
-    
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return this.getType();
     }
 }

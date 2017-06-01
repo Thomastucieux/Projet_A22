@@ -3,75 +3,51 @@ package packglad;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class GGladiateur {
+class GGladiateur {
     /**
      * @attribute
      */
-    private static Integer incrementIDG=1;
-    private static Collection<Gladiateur> listeGladiateur = new ArrayList<Gladiateur>();
+    private static Integer incrementIDG = 1;
+    private static Collection<Gladiateur> listeGladiateur = new ArrayList<>();
 
-    public static void setIncrementIDG(Integer incrementIDG) {
-        GGladiateur.incrementIDG = incrementIDG;
-    }
+    static Gladiateur getGladiateur(Integer idg) {
+        Gladiateur g = null;
 
-    public static Integer getIncrementIDG() {
-        return incrementIDG;
-    }
-
-    public static Gladiateur getGladiateur(Integer idg){
-      Gladiateur g = null;
-      for (Gladiateur glad : listeGladiateur)
-      {
-          if (idg == glad.getIdg())
-          {
-              g=glad;
-          }
-      }
-      return g;
-    }
-
-    public static Collection<Gladiateur> getListeGladiateur() {
-        return listeGladiateur;
-    }
-
-
-    public static void nouveauMirmillon(String nom, Integer poids, Ethnie ethnie) {
-        if (poids <= Mirmillon.getC_poidsMax()) {
-            Mirmillon m = new Mirmillon(nom, GGladiateur.getIncrementIDG(), ethnie, poids);
-            GGladiateur.listeGladiateur.add(m);
-            GGladiateur.setIncrementIDG(GGladiateur.getIncrementIDG()+1);
+        for (Gladiateur glad : listeGladiateur) {
+            if (idg.equals(glad.getIdg()))
+                g = glad;
         }
+
+        return g;
     }
 
-    public static void nouveauRetiaire(String nom, Integer agilite, Ethnie ethnie) {
-        if (agilite <= Retiaire.getC_agiliteMax()) {
-            Retiaire r = new Retiaire(nom, GGladiateur.getIncrementIDG(), ethnie, agilite);
-            GGladiateur.listeGladiateur.add(r);
-            GGladiateur.setIncrementIDG(GGladiateur.getIncrementIDG()+1);
-        }
+    static Collection<Gladiateur> getListeGladiateur() {
+        return new ArrayList<>(listeGladiateur);
     }
 
-    public static Integer suppGlad(Integer idg) {
-        int res = 1;
-        //test si le gladiateur existe
-        for (Gladiateur g : GGladiateur.listeGladiateur) {
-            if (g.getIdg()==idg) {
-                res = 0;
-            }
-        }
-        //Supprime le gladiateur de la liste s'il existe
-        if (res == 0) {
-            GGladiateur.listeGladiateur.remove(GGladiateur.getGladiateur(idg));
-        }
-        return res;
+
+    static Mirmillon nouveauMirmillon(String nom, Integer poids, Ethnie ethnie) {
+        Mirmillon m = new Mirmillon(nom, incrementIDG, ethnie, poids < 0 ? 0 : (poids > Mirmillon.getC_poidsMax() ? Mirmillon.getC_poidsMax() : poids));
+        GGladiateur.listeGladiateur.add(m);
+        incrementIDG++;
+        return m;
     }
 
-    public static Collection<Gladiateur> getCompoEthnie(Ethnie e) {
-        Collection<Gladiateur> composition = new ArrayList<Gladiateur>();
-        for (Gladiateur glad : getListeGladiateur())
-        {
-            if (glad.getAppartenance() == e)
-            {
+    static Retiaire nouveauRetiaire(String nom, Integer agilite, Ethnie ethnie) {
+        Retiaire r = new Retiaire(nom, incrementIDG, ethnie, agilite < 0 ? 0 : (agilite > Retiaire.getC_agiliteMax() ? Retiaire.getC_agiliteMax() : agilite));
+        GGladiateur.listeGladiateur.add(r);
+        incrementIDG++;
+        return r;
+    }
+
+    static Boolean suppGlad(Integer idg) {
+        return listeGladiateur.remove(getGladiateur(idg));
+    }
+
+    static Collection<Gladiateur> getCompoEthnie(Ethnie e) {
+        Collection<Gladiateur> composition = new ArrayList<>();
+        for (Gladiateur glad : getListeGladiateur()) {
+            if (glad.getAppartenance().equals(e)) {
                 composition.add(glad);
             }
         }
