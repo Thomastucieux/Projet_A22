@@ -67,7 +67,7 @@ public class GGladiateur {
     }
 
     public static Collection<Gladiateur> getCompoEthnie(Ethnie e) {
-        Collection<Gladiateur> composition = null;
+        Collection<Gladiateur> composition = new ArrayList<Gladiateur>();
         for (Gladiateur glad : getListeGladiateur())
         {
             if (glad.getAppartenance() == e)

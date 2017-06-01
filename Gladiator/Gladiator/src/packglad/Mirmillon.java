@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class Mirmillon extends Gladiateur {
     /**
-     * @attribute
+     * @attributs
      */
     private Integer poids;
     private static Integer c_poidsMax = 100;
@@ -14,12 +14,18 @@ public class Mirmillon extends Gladiateur {
     //Liste des armes autorisées
     private static Collection<Integer> armeAutorisees = new ArrayList<Integer>();
     
-
+    /**
+     * @Constructeurs
+     */
 
     public Mirmillon(String nom, Integer idg, Ethnie Appartenance, Integer poids) {
         super(nom, idg, Appartenance);
         this.poids = poids;
     }
+    
+    /**
+     * @Méthodes
+     */
 
     public void setPoids(Integer poids) {
         this.poids = poids;
@@ -37,7 +43,7 @@ public class Mirmillon extends Gladiateur {
         return c_poidsMax;
     }
 
-    public Collection getAgresseur() {
+    @Override public Collection<Gladiateur> getAgresseur() {
         return agresseur;
     }
 
@@ -46,18 +52,18 @@ public class Mirmillon extends Gladiateur {
     }
 
  
-    public Integer getForce() {
+    @Override public Integer getForce() {
         return this.poids/2;
     }
 
 
-    public String rapport() {
-        return super.rapport() + " mon poids est de " + this.getPoids() + " kg";
+    @Override public String rapport() {
+        return super.rapport() + " mon poids est de " + this.getPoids() + " kg" + ", voici mes armes " + this.declarerArmes().toString() + ", mes agresseurs sont : " + this.getAgresseur().toString();
     }
 
 
-    public Integer recevoirCoup(Integer degat, Gladiateur Agresseur) {
-        Integer res = super.recevoirCoup(degat, Agresseur);
+    @Override public Integer recevoirCoup(Integer degat, Gladiateur Agresseur) {
+        Integer res = this.recevoirCoup(degat);
         if (res == 0) {
             this.agresseur.add(Agresseur);
         }
@@ -74,11 +80,9 @@ public class Mirmillon extends Gladiateur {
         return res;
     }
     
-    public String saluer() {
-        return "Ave Caesar, " + Mirmillon.getType() + " n°" + this.getIdg() + " : " + this.getNom() + " , j'appartiens à l'ethnie des " + this.getAppartenance().getNom();
-    }
     
-    public static String getType() {
+    
+    @Override public String getType() {
         return Mirmillon.c_type;
     }
     

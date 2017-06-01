@@ -55,4 +55,8 @@ public class Arme {
     public Integer getPuissanceDefensive() {
         return this.puissanceDefensive;
     }
+    
+    @Override public String toString() {
+        return this.getType();
+    }
 }

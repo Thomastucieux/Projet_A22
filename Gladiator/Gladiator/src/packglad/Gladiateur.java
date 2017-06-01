@@ -23,9 +23,16 @@ public abstract class Gladiateur {
         this.idg = idg;
         this.Appartenance = Appartenance;
     }
-
-    public Integer recevoirCoup(Integer degat, Gladiateur agresseur) {
-        //agresseur utilisé seulement dans la méthode de Mirmillon
+    
+    public String saluer() {
+        return "Ave Caesar, " + this.getType() + " n°" + this.getIdg() + " : " + this.getNom() + " , j'appartiens à l'ethnie des " + this.getAppartenance().getNom();
+    }
+    
+    public String rapport() {
+        return this.getType()+" N° " +this.getIdg() + ", mon nom est " + this.getNom() + ", j'appartiens a l'ethnie des " + this.getAppartenance().getNom() + ", je suis " + this.getEtat() +", il me reste " + this.getVie() + " points de vie, j'ai une force de " + this.getForce();
+    }
+    
+    public Integer recevoirCoup(Integer degat) {
         Integer res=1;
         if (this.vie > 0) {
             //Calcul des dégats infligés en fonction de la défense
@@ -63,13 +70,11 @@ public abstract class Gladiateur {
         return this.listeArme;
     }
     
-    public String rapport() {
-        return "Mon identifiant est " +this.getIdg() + ", mon nom est " + this.getNom() + ", j'appartiens a l'ethnie des " + this.getAppartenance().getNom() + ", je suis " + this.getEtat() +", il me reste " + this.getVie() + " points de vie, j'ai une force de " + this.getForce() + ", voici mes armes " + this.listeArme.toString();
-    }
+    
 
     public String getEtat() {
         String res = "";
-        int vie = this.getVie();
+        Integer vie = this.getVie();
         if(vie < 10) {
             res = "moribond";
         }
@@ -87,7 +92,12 @@ public abstract class Gladiateur {
     public Integer frapper(Arme a, Gladiateur Victime) {
         Integer res=1;
         if (this.listeArme.contains(a)) {
-            res = Victime.recevoirCoup(a.getPuissanceOffensive()+this.getForce(), this);
+            if (Victime.getType() == "Mirmillon") {
+                res = Victime.recevoirCoup(a.getPuissanceOffensive()+this.getForce(), this);
+            }
+            else {
+                res = Victime.recevoirCoup(a.getPuissanceOffensive()+this.getForce());
+            }
         }
         return res;
     }
@@ -147,7 +157,13 @@ public abstract class Gladiateur {
         return this.Appartenance;
     }
     
-    public abstract Collection getAgresseur();
-    public abstract String saluer();
+    @Override public String toString() {
+        return this.getNom();
+    }
+    
+    
+    public abstract Collection<Gladiateur> getAgresseur();
+    public abstract String getType();
     public abstract Integer getForce();
+    public abstract Integer recevoirCoup(Integer degat, Gladiateur Agresseur);
 }

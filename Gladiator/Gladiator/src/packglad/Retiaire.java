@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public class Retiaire extends Gladiateur {
     /**
-     * @attribute
+     * @attributs
      */
     private static Integer c_force = 30;
     private static String c_type = "Retiaire";
@@ -24,16 +24,16 @@ public class Retiaire extends Gladiateur {
         this.agilite = agilite;
     }
 
-    public String rapport() {
-        return super.rapport() + " mon agilite est de " + this.getAgilite();
+    /**
+     * @Méthodes
+     */
+    
+    @Override public String rapport() {
+        return super.rapport() + " mon agilite est de " + this.getAgilite() + ", voici mes armes " + this.declarerArmes().toString();
     }
     
-    public String saluer() {
-        return "Ave Caesar, " + this.getType() + " n°" + this.getIdg() + " : " + this.getNom() + " , j'appartiens à l'ethnie des " + this.getAppartenance().getNom();
-    }
 
-
-    public Integer getForce() {
+    @Override public Integer getForce() {
         return Retiaire.c_force;
     }
 
@@ -63,7 +63,7 @@ public class Retiaire extends Gladiateur {
         return Retiaire.armeAcc;
     }
 
-    public String getType() {
+    @Override public String getType() {
         return Retiaire.c_type;
     }
     public static void setC_AgiliteMax(Integer agiliteMax) {
@@ -74,12 +74,7 @@ public class Retiaire extends Gladiateur {
         return c_agiliteMax;
     }
     
-    //jamais utilisé puisque normalement réservé aux mirmillons
-    public Collection getAgresseur() {
-        Collection a = null;
-        return a;
-    }
-    
+        
     @Override public Integer recevoirArmes(Arme a) {
         Integer res=1;
         for (Integer arme : Retiaire.armeAcc) {
@@ -93,8 +88,14 @@ public class Retiaire extends Gladiateur {
         return res;
     }
     
-    public Integer recevoirCoup(Integer degat, Gladiateur agresseur) {
-        return super.recevoirCoup(degat-this.getAgilite(), agresseur);
+    /**
+     * Méthodes jamais utilisé puisque normalement réservé aux mirmillons
+     */
+    @Override public Collection<Gladiateur> getAgresseur() {
+        Collection<Gladiateur> a = null;
+        return a;
     }
-
+    @Override public Integer recevoirCoup(Integer degat, Gladiateur Agresseur) {
+        return null;
+    }
 }

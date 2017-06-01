@@ -5,7 +5,6 @@ public class Ethnie {
      * @attributs
      */
     private String nom;
-    private Integer score;
     private Integer ide;
 
     /**
@@ -13,12 +12,11 @@ public class Ethnie {
      */
     public Ethnie(String nom, Integer ide) {
         this.nom = nom;
-        this.score = 0;
         this.ide = ide;
     }
 
     public String decrireEthnie() {
-        return "Ceci est l'ethnie "+this.getNom()+", numéro "+this.getIde()+", elle a le score de "+this.getScore()+" points.";
+        return "Les "+this.getNom()+", numéro "+this.getIde()+", ont un score de "+this.getScore()+" points.";
     }
 
     public void setNom(String nom) {
@@ -29,12 +27,23 @@ public class Ethnie {
         return this.nom;
     }
 
-    public void setScore(Integer score) {
-        this.score = score;
-    }
+
 
     public Integer getScore() {
-        return this.score;
+        Integer res = 0;
+        for (Gladiateur g : GGladiateur.getCompoEthnie(this)) {
+            Integer vie = g.getVie();
+            if(vie > 50) {
+                res += 10 ;
+            }
+            else if(vie >= 10) {
+                res += 5;
+            }
+            else {
+                res += 0;
+            }
+        }
+        return res;
     }
 
     public void setIde(Integer ide) {
