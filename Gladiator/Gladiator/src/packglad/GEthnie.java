@@ -41,7 +41,7 @@ public class GEthnie {
     }
 
     public static Collection<Integer> getEthnieWin() {
-        Collection<Integer> ethnie = null;
+        Collection<Integer> ethnie = new ArrayList<Integer>();
         int score=0;
         for (Ethnie e : GEthnie.listeEthnie)
         {

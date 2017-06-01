@@ -52,11 +52,16 @@ public class GGladiateur {
     }
 
     public static Integer suppGlad(Integer idg) {
-        int res=0;
+        int res = 1;
+        //test si le gladiateur existe
         for (Gladiateur g : GGladiateur.listeGladiateur) {
             if (g.getIdg()==idg) {
-                
+                res = 0;
             }
+        }
+        //Supprime le gladiateur de la liste s'il existe
+        if (res == 0) {
+            GGladiateur.listeGladiateur.remove(GGladiateur.getGladiateur(idg));
         }
         return res;
     }

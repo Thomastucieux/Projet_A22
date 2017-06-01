@@ -94,12 +94,14 @@ public abstract class Gladiateur {
 
 
     public Integer perdreArme(Arme a) {
-        Integer res=0;
+        Integer res=1;
         for (Arme arme : this.listeArme) {
             if (arme == a) {
-                this.listeArme.remove(a);
-                res=1;
+                res=0;
             }
+        }
+        if (res == 0) {
+            this.listeArme.remove(a);
         }
         return res;
     }
